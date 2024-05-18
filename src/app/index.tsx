@@ -42,6 +42,12 @@ export default function index() {
               dispatch(incrementByAmount(3));
             }}
           />
+          <ActionButton
+            text={"+1 Async"}
+            onPress={() => {
+              dispatch(increment());
+            }}
+          />
         </View>
       </View>
     </SafeAreaView>
