@@ -39,15 +39,12 @@ const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
 const counterSelector = (state: RootState) => state.counter.value;
 
-const useCounter = () => useAppSelector(counterSelector);
-
 export {
   counterSelector,
   counterSlice,
   decrement,
   increment,
   incrementByAmount,
-  useCounter,
 };
 export type { CounterState };
 export default counterReducer;
