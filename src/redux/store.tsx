@@ -6,6 +6,7 @@ import counterReducer, {
 import { applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { helloSaga } from "./sagas/helloSaga";
+import rootSaga from "./sagas/rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,7 +18,7 @@ const store = configureStore({
     getDefaultMeddleWare().concat(sagaMiddleware),
 });
 
-sagaMiddleware.run(helloSaga);
+sagaMiddleware.run(rootSaga);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 type RootState = ReturnType<typeof store.getState>;
