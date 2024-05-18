@@ -7,8 +7,8 @@ export default function index() {
   const counter = useCounter();
 
   return (
-    <SafeAreaView>
-      <View>
+    <SafeAreaView style={{}}>
+      <View className="h-full self-stretch items-stretch bg-slate-300 ">
         <Text>{counter}</Text>
       </View>
     </SafeAreaView>
