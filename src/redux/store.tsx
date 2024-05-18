@@ -3,12 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import counterReducer, {
   counterSelector,
 } from "./features/counter/counterSlice";
+import { applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
+import { helloSaga } from "./sagas/helloSaga";
+
+const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
   reducer: {
     counter: counterReducer,
   },
+  middleware: (getDefaultMeddleWare) =>
+    getDefaultMeddleWare().concat(sagaMiddleware),
 });
+
+sagaMiddleware.run(helloSaga);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 type RootState = ReturnType<typeof store.getState>;
