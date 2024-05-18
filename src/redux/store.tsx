@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import counterReducer from "./features/counter/counterSlice";
+import counterReducer, {
+  counterSelector,
+} from "./features/counter/counterSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,5 +18,9 @@ type AppDispatch = typeof store.dispatch;
 const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 const useAppSelector = useSelector.withTypes<RootState>();
 
+// hooks
+const useCounter = () => useAppSelector(counterSelector);
+
 export default store;
-export type { AppDispatch, RootState, useAppDispatch, useAppSelector };
+export { useAppDispatch, useAppSelector, useCounter };
+export type { AppDispatch, RootState };

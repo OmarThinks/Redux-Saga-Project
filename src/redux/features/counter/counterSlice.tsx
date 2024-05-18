@@ -1,10 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { RootState, useAppSelector } from "@/redux/store";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import store from "@/redux/store";
+
+type CounterState = {
+  value: number;
+};
+
+// Define the initial state using that type
+const initialState: CounterState = {
+  value: 0,
+};
 
 const counterSlice = createSlice({
   name: "counter",
-  initialState: {
-    value: 0,
-  },
+  initialState,
   reducers: {
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -17,7 +26,7 @@ const counterSlice = createSlice({
     decrement: (state) => {
       state.value -= 1;
     },
-    incrementByAmount: (state, action) => {
+    incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload;
     },
   },
@@ -28,7 +37,9 @@ const counterReducer = counterSlice.reducer;
 // Action creators are generated for each case reducer function
 const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
-const counterSelector = (state) => state.counter.value;
+const counterSelector = (state: RootState) => state.counter.value;
+
+const useCounter = () => useAppSelector(counterSelector);
 
 export {
   counterSelector,
@@ -36,5 +47,7 @@ export {
   decrement,
   increment,
   incrementByAmount,
+  useCounter,
 };
+export type { CounterState };
 export default counterReducer;
