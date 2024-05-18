@@ -32,7 +32,11 @@ export default function index() {
           }}
           incrementAsync={() => {
             console.log("async");
-            dispatch(incrementAsync());
+            dispatch(incrementAsync(1000));
+          }}
+          incrementAsync2={() => {
+            console.log("async");
+            dispatch(incrementAsync(2000));
           }}
         />
       </View>
@@ -46,12 +50,14 @@ const Counter = ({
   onPressIncrement,
   onPressIncrementByAmount,
   incrementAsync,
+  incrementAsync2,
 }: {
   counter: number;
   onPressDecrement: () => void;
   onPressIncrement: () => void;
   onPressIncrementByAmount: () => void;
   incrementAsync: () => void;
+  incrementAsync2: () => void;
 }) => {
   return (
     <View className="self-stretch items-stretch" style={{ gap: 20 }}>
@@ -65,6 +71,7 @@ const Counter = ({
         <ActionButton text={"+"} onPress={onPressIncrement} />
         <ActionButton text={"+3"} onPress={onPressIncrementByAmount} />
         <ActionButton text={"+1 Async"} onPress={incrementAsync} />
+        <ActionButton text={"+1 Async2"} onPress={incrementAsync2} />
       </View>
     </View>
   );
