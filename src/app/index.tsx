@@ -1,10 +1,16 @@
 import { View, Text, Button, Pressable } from "react-native";
 import React, { memo } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useCounter } from "@/redux/store";
+import { useAppDispatch, useCounter } from "@/redux/store";
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+} from "@/redux/features/counter/counterSlice";
 
 export default function index() {
   const counter = useCounter();
+  const dispatch = useAppDispatch();
 
   return (
     <SafeAreaView style={{}}>
@@ -14,10 +20,28 @@ export default function index() {
       >
         <Text className="text-[30px] text-center">{counter}</Text>
 
-        <View className="flex-row self-stretch justify-center flex-wrap">
-          <ActionButton text={"-"} onPress={() => {}} />
-          <ActionButton text={"+"} onPress={() => {}} />
-          <ActionButton text={"+"} onPress={() => {}} />
+        <View
+          className="flex-row self-stretch justify-center flex-wrap"
+          style={{ gap: 20 }}
+        >
+          <ActionButton
+            text={"-"}
+            onPress={() => {
+              dispatch(decrement());
+            }}
+          />
+          <ActionButton
+            text={"+"}
+            onPress={() => {
+              dispatch(increment());
+            }}
+          />
+          <ActionButton
+            text={"+3"}
+            onPress={() => {
+              dispatch(incrementByAmount(3));
+            }}
+          />
         </View>
       </View>
     </SafeAreaView>
