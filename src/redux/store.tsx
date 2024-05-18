@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
+import createSagaMiddleware from "redux-saga";
 import counterReducer, {
   counterSelector,
 } from "./features/counter/counterSlice";
-import { applyMiddleware } from "redux";
-import createSagaMiddleware from "redux-saga";
-import { helloSaga } from "./sagas/helloSaga";
 import rootSaga from "./sagas/rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();

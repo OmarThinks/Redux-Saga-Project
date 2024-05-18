@@ -16,43 +16,73 @@ export default function index() {
     <SafeAreaView style={{}}>
       <View
         className="h-full self-stretch items-stretch justify-center"
-        style={{ gap: 20 }}
+        style={{ gap: 40 }}
       >
-        <Text className="text-[30px] text-center">{counter}</Text>
+        <Counter
+          counter={counter}
+          onPressDecrement={() => {
+            dispatch(decrement());
+          }}
+          onPressIncrement={() => {
+            dispatch(increment());
+          }}
+          onPressIncrementByAmount={() => {
+            dispatch(incrementByAmount(3));
+          }}
+          incrementAsync={() => {
+            dispatch(increment());
+          }}
+        />
 
-        <View
-          className="flex-row self-stretch justify-center flex-wrap"
-          style={{ gap: 20 }}
-        >
-          <ActionButton
-            text={"-"}
-            onPress={() => {
-              dispatch(decrement());
-            }}
-          />
-          <ActionButton
-            text={"+"}
-            onPress={() => {
-              dispatch(increment());
-            }}
-          />
-          <ActionButton
-            text={"+3"}
-            onPress={() => {
-              dispatch(incrementByAmount(3));
-            }}
-          />
-          <ActionButton
-            text={"+1 Async"}
-            onPress={() => {
-              dispatch(increment());
-            }}
-          />
-        </View>
+        <Counter
+          counter={counter}
+          onPressDecrement={() => {
+            dispatch(decrement());
+          }}
+          onPressIncrement={() => {
+            dispatch(increment());
+          }}
+          onPressIncrementByAmount={() => {
+            dispatch(incrementByAmount(3));
+          }}
+          incrementAsync={() => {
+            dispatch(increment());
+          }}
+        />
       </View>
     </SafeAreaView>
   );
 }
+
+const Counter = ({
+  counter,
+  onPressDecrement,
+  onPressIncrement,
+  onPressIncrementByAmount,
+  incrementAsync,
+}: {
+  counter: number;
+  onPressDecrement: () => void;
+  onPressIncrement: () => void;
+  onPressIncrementByAmount: () => void;
+  incrementAsync: () => void;
+}) => {
+  return (
+    <View className="self-stretch items-stretch" style={{ gap: 20 }}>
+      <Text className="text-[30px] text-center">{counter}</Text>
+
+      <View
+        className="flex-row self-stretch justify-center flex-wrap"
+        style={{ gap: 20 }}
+      >
+        <ActionButton text={"-"} onPress={onPressDecrement} />
+        <ActionButton text={"+"} onPress={onPressIncrement} />
+        <ActionButton text={"+3"} onPress={onPressIncrementByAmount} />
+        <ActionButton text={"+1 Async"} onPress={incrementAsync} />
+      </View>
+    </View>
+  );
+};
 
 const ActionButton = memo(
   ({ text, onPress }: { text: string; onPress: () => void }) => {
