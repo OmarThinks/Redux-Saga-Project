@@ -1,12 +1,13 @@
-import { View, Text, Button, Pressable } from "react-native";
-import React, { memo } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useAppDispatch, useCounter } from "@/redux/store";
 import {
   decrement,
   increment,
+  incrementAsync,
   incrementByAmount,
 } from "@/redux/features/counter/counterSlice";
+import { useAppDispatch, useCounter } from "@/redux/store";
+import React, { memo } from "react";
+import { Pressable, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function index() {
   const counter = useCounter();
@@ -30,23 +31,8 @@ export default function index() {
             dispatch(incrementByAmount(3));
           }}
           incrementAsync={() => {
-            dispatch(increment());
-          }}
-        />
-
-        <Counter
-          counter={counter}
-          onPressDecrement={() => {
-            dispatch(decrement());
-          }}
-          onPressIncrement={() => {
-            dispatch(increment());
-          }}
-          onPressIncrementByAmount={() => {
-            dispatch(incrementByAmount(3));
-          }}
-          incrementAsync={() => {
-            dispatch(increment());
+            console.log("async");
+            dispatch(incrementAsync());
           }}
         />
       </View>

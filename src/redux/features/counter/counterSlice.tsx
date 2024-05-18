@@ -1,6 +1,5 @@
-import { RootState, useAppSelector } from "@/redux/store";
+import { RootState } from "@/redux/store";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import store from "@/redux/store";
 
 type CounterState = {
   value: number;
@@ -29,13 +28,15 @@ const counterSlice = createSlice({
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload;
     },
+    incrementAsync: () => {},
   },
 });
 
 const counterReducer = counterSlice.reducer;
 
 // Action creators are generated for each case reducer function
-const { increment, decrement, incrementByAmount } = counterSlice.actions;
+const { increment, decrement, incrementByAmount, incrementAsync } =
+  counterSlice.actions;
 
 const counterSelector = (state: RootState) => state.counter.value;
 
@@ -44,6 +45,7 @@ export {
   counterSlice,
   decrement,
   increment,
+  incrementAsync,
   incrementByAmount,
 };
 export type { CounterState };
