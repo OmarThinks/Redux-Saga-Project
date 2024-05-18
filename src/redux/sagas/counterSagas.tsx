@@ -20,6 +20,16 @@ function* incrementAsync() {
   yield put({ type: "INCREMENT" });
 }
 
+function* watchIncrement() {
+  yield takeEvery("INCREMENT", increment);
+}
+function* watchDecrement() {
+  yield takeEvery("DECREMENT", increment);
+}
+function* watchIncrementByValue() {
+  yield takeEvery("INCREMENT_BY_VALUE", incrementByValue);
+}
+
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
 function* watchIncrementAsync() {
   yield takeEvery("INCREMENT_ASYNC", incrementAsync);
@@ -30,5 +40,8 @@ export {
   increment,
   incrementAsync,
   incrementByValue,
+  watchDecrement,
+  watchIncrement,
   watchIncrementAsync,
+  watchIncrementByValue,
 };
